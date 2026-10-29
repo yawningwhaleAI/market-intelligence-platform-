@@ -1,0 +1,63 @@
+# Search queries (spec §6). Scrape SEARCH RESULT PAGES, not a fixed product
+# list, so we capture new SKUs, rank and sponsored slots.
+#
+# Caps (spec §6):
+#   quick_commerce: 60 results per (query x location)
+#   ecommerce:      100 results per (query x location)
+# Only tissue/paper results are kept after relevance filtering (spec §9.7).
+
+caps:
+  quick_commerce: 60
+  ecommerce: 100
+
+queries:
+  facial:
+    - facial tissue
+    - tissue box
+    - face tissue
+  pocket:
+    - pocket tissue
+  car:
+    - car tissue
+  kitchen:
+    - kitchen towel
+    - kitchen roll
+    - paper towel
+  toilet:
+    - toilet roll
+    - toilet paper
+    - toilet tissue
+  napkin:
+    - paper napkins
+    - serviettes
+  wipes:
+    - wet wipes
+  kitchen_paper:
+    - air fryer liner
+    - air fryer paper
+    - baking paper
+    - butter paper
+    - parchment paper
+    - food wrap paper
+
+  # --- Adjacent disposables (added 29 Sep 2026, per Aryan) ---
+  # NOTE: some of these are NOT tissue/paper (garbage bags & cling wrap are
+  # plastic; plates/cups are moulded/coated paper). ply/GSM/pulls parsing does
+  # NOT apply — those fields stay NULL. Kept as their own categories, NOT
+  # filtered out by the paper-relevance filter (§9.7). Material stays not_stated
+  # unless the listing says otherwise.
+  cling_wrap:                 # "kling wrap" / cling film — plastic
+    - cling wrap
+    - cling film
+    - plastic wrap
+  garbage_bag:                # plastic
+    - garbage bags
+    - dustbin bags
+    - trash bags
+  paper_plate:
+    - paper plates
+    - disposable plates
+  paper_cup:
+    - paper cups
+    - disposable cups
+

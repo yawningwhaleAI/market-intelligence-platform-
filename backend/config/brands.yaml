@@ -1,0 +1,35 @@
+# Brand universe to watch (spec §12). Tier tags for analysis; extend as new
+# brands appear in the data. `aliases` help the normaliser map raw brand text.
+# Material is NEVER inferred from brand (spec §2) — these tiers are for
+# grouping/positioning analysis only.
+
+brands:
+  - {name: Origami,          tier: mass,               aliases: [origami]}
+  - {name: Premier,          tier: mass,               aliases: [premier]}
+  - {name: Beco,             tier: new_age_premium,    aliases: [beco]}
+  - {name: The Honest Home,  tier: new_age_premium,    aliases: [honest home, honest]}
+  - {name: Imvelo,           tier: new_age_premium,    aliases: [imvelo]}
+  - {name: Aurelia,          tier: new_age_premium,    aliases: [aurelia]}
+  - {name: Paseo,            tier: imported_premium,   aliases: [paseo, paséo]}
+  - {name: Kleenex,          tier: imported_premium,   aliases: [kleenex]}
+  - {name: Selpak,           tier: imported_premium,   aliases: [selpak]}
+  - {name: Wintex,           tier: value,              aliases: [wintex]}
+  - {name: Kressa,           tier: value,              aliases: [kressa]}
+  - {name: Liora,            tier: value,              aliases: [liora]}
+  - {name: Daffodil Plus,    tier: value,              aliases: [daffodil]}
+  - {name: YellowHome,       tier: value,              aliases: [yellowhome, yellow home]}
+  - {name: Imeco,            tier: value,              aliases: [imeco]}
+  - {name: Baiko,            tier: value,              aliases: [baiko]}
+  - {name: Tulips,           tier: value,              aliases: [tulips]}
+  - {name: 10 On,            tier: reference,          aliases: [10 on, 10on, ten on]}
+  # Substitutes (spec §9.7): reusable / non-woven kitchen towels, cloth —
+  # kept but flagged is_substitute, not merged into paper SKUs.
+
+tiers:
+  mass:              Mass organised
+  new_age_premium:   New-age / premium
+  imported_premium:  Imported premium
+  value:             Value / marketplace
+  reference:         Reference (family)
+  substitute:        Substitutes
+

@@ -1,0 +1,82 @@
+# Locations (spec §7). 36 localities across 8 tier-1 cities, stratified by
+# affluence. NCR is weighted higher (8) because it is the launch beachhead.
+#
+# IMPORTANT (spec §7): each locality is a PROPOSAL. Before any real run, the
+# scraper must confirm the locality is serviceable on each platform, resolve
+# it to a store_id / pincode, and log the resolved value. Swap any
+# unserviceable locality for the nearest equivalent in the same tier.
+#
+# `resolved` blocks are filled in during Step 1/Step 3, per platform. They are
+# left null here so we never pretend a location was verified when it wasn't.
+
+affluence_tiers: [premium, upper_mid, mid, new_suburb]
+
+cities:
+  delhi_ncr:            # weighted higher: 8 localities
+    weight: 8
+    # city/area feed Instamart; lat/lng feed Blinkit; "name, city" feeds Zepto.
+    # Coordinates are approximate locality centroids (good enough for dark-store
+    # resolution); the actor returns the resolved store/location we actually log.
+    localities:
+      - {name: Greater Kailash,           tier: premium,    city: New Delhi, area: Greater Kailash,      lat: 28.5494, lng: 77.2425}
+      - {name: Golf Course Road Gurugram, tier: premium,    city: Gurugram,  area: Golf Course Road,     lat: 28.4595, lng: 77.0726}
+      - {name: Vasant Kunj,               tier: upper_mid,  city: New Delhi, area: Vasant Kunj,          lat: 28.5200, lng: 77.1591}
+      - {name: Sector 50 Noida,           tier: upper_mid,  city: Noida,     area: Sector 50 Noida,      lat: 28.5710, lng: 77.3600}
+      - {name: Mayur Vihar Phase 1,       tier: mid,        city: New Delhi, area: Mayur Vihar Phase 1,  lat: 28.6060, lng: 77.2910}
+      - {name: Dwarka,                    tier: new_suburb, city: New Delhi, area: Dwarka,               lat: 28.5921, lng: 77.0460}
+      - {name: Sohna Road Gurugram,       tier: new_suburb, city: Gurugram,  area: Sohna Road,           lat: 28.4200, lng: 77.0400}
+      - {name: Greater Noida West,        tier: new_suburb, city: Greater Noida, area: Greater Noida West, lat: 28.6000, lng: 77.4300}
+  mumbai:
+    weight: 4
+    localities:
+      - {name: Bandra West,   tier: premium,    city: Mumbai, area: Bandra West}
+      - {name: Powai,         tier: upper_mid,  city: Mumbai, area: Powai}
+      - {name: Borivali West, tier: mid,        city: Mumbai, area: Borivali West}
+      - {name: Thane West,    tier: new_suburb, city: Mumbai, area: Thane West}
+  bengaluru:
+    weight: 4
+    localities:
+      - {name: Indiranagar, tier: premium,    city: Bengaluru, area: Indiranagar}
+      - {name: Koramangala, tier: upper_mid,  city: Bengaluru, area: Koramangala}
+      - {name: Jayanagar,   tier: mid,        city: Bengaluru, area: Jayanagar}
+      - {name: Whitefield,  tier: new_suburb, city: Bengaluru, area: Whitefield}
+  hyderabad:
+    weight: 4
+    localities:
+      - {name: Jubilee Hills, tier: premium,    city: Hyderabad, area: Jubilee Hills}
+      - {name: Gachibowli,    tier: upper_mid,  city: Hyderabad, area: Gachibowli}
+      - {name: Kukatpally,    tier: mid,        city: Hyderabad, area: Kukatpally}
+      - {name: Kompally,      tier: new_suburb, city: Hyderabad, area: Kompally}
+  chennai:
+    weight: 4
+    localities:
+      - {name: Adyar,                  tier: premium,    city: Chennai, area: Adyar}
+      - {name: Anna Nagar,             tier: upper_mid,  city: Chennai, area: Anna Nagar}
+      - {name: Velachery,              tier: mid,        city: Chennai, area: Velachery}
+      - {name: Sholinganallur OMR,     tier: new_suburb, city: Chennai, area: Sholinganallur OMR}
+  kolkata:
+    weight: 4
+    localities:
+      - {name: Ballygunge, tier: premium,    city: Kolkata, area: Ballygunge}
+      - {name: Salt Lake,  tier: upper_mid,  city: Kolkata, area: Salt Lake}
+      - {name: Behala,     tier: mid,        city: Kolkata, area: Behala}
+      - {name: New Town,   tier: new_suburb, city: Kolkata, area: New Town}
+  pune:
+    weight: 4
+    localities:
+      - {name: Koregaon Park, tier: premium,    city: Pune, area: Koregaon Park}
+      - {name: Baner,         tier: upper_mid,  city: Pune, area: Baner}
+      - {name: Kothrud,       tier: mid,        city: Pune, area: Kothrud}
+      - {name: Wakad,         tier: new_suburb, city: Pune, area: Wakad}
+  ahmedabad:
+    weight: 4
+    localities:
+      - {name: Bodakdev,  tier: premium,    city: Ahmedabad, area: Bodakdev}
+      - {name: Satellite, tier: upper_mid,  city: Ahmedabad, area: Satellite}
+      - {name: Maninagar, tier: mid,        city: Ahmedabad, area: Maninagar}
+      - {name: Gota,      tier: new_suburb, city: Ahmedabad, area: Gota}
+
+# Filled during resolution. One entry per (city, locality, platform).
+# schema: {city, locality, platform, serviceable, store_id, pincode_resolved, checked_at}
+resolved: []
+
